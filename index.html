@@ -152,13 +152,37 @@ footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-co
  h1{font-size:78px}.stats{grid-template-columns:1fr}.masonry{columns:1}.btn{width:100%}
  footer{display:block;line-height:2}
 }
+
+.character-grid.seven{grid-template-columns:repeat(4,1fr)}
+.character-grid.seven .card:nth-child(2),
+.character-grid.seven .card:nth-child(5){transform:none}
+.character-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:saturate(1.12) contrast(1.05)}
+.card:hover .character-img{transform:scale(1.07)}
+.card{min-height:540px}
+.ranking-wrap{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.025);backdrop-filter:blur(10px);overflow:hidden}
+.ranking-head,.rank-row{display:grid;grid-template-columns:110px 1fr 150px;align-items:center}
+.ranking-head{padding:14px 22px;color:#777;font-size:9px;letter-spacing:.2em;border-bottom:1px solid var(--line)}
+.ranking{display:grid}
+.rank-row{min-height:90px;padding:10px 22px;border-bottom:1px solid var(--line);transition:.25s;position:relative}
+.rank-row:hover{background:rgba(255,255,255,.035)}
+.rank-place{font:900 48px/.8 'Barlow Condensed';color:#777;display:flex;align-items:center;gap:12px}
+.rank-crown{font-size:28px;display:none}
+.rank-name{font:800 30px/.9 'Barlow Condensed';text-transform:uppercase}
+.rank-sub{font-size:9px;color:#777;letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
+.rank-value{text-align:right;font:800 36px/.9 'Barlow Condensed'}
+.rank-row.first{background:linear-gradient(90deg,rgba(255,196,62,.18),rgba(255,196,62,.055),transparent);border-left:4px solid #d9a52e}
+.rank-row.first .rank-place,.rank-row.first .rank-value{color:#f2c55d}
+.rank-row.first .rank-crown{display:inline-block}
+.rank-row.first:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 50px rgba(255,196,62,.06)}
+@media(max-width:1000px){.character-grid.seven{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:800px){.character-grid.seven{grid-template-columns:1fr}.ranking-head,.rank-row{grid-template-columns:75px 1fr 90px}.rank-name{font-size:24px}.rank-value{font-size:28px}}
 </style>
 </head>
 <body>
 <header class="nav" id="nav">
   <a class="brand" href="#top">GRAND <span>THEFT</span> NEIRO</a>
   <nav class="navlinks">
-    <a href="#characters">Characters</a><a href="#city">The City</a><a href="#gallery">Gallery</a><a href="#story">Story</a><a href="#media">Media</a>
+    <a href="#characters">Characters</a><a href="#city">The City</a><a href="#story">Story</a>
   </nav>
   <button class="menu" aria-label="Menu">☰</button>
 </header>
@@ -180,29 +204,33 @@ footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-co
 
 <section class="section characters" id="characters">
   <div class="section-head reveal"><div><div class="eyebrow">01 / The crew</div><h2>Characters</h2></div><p class="lead">Six faces. Six motives. One city where every decision leaves a mark. Explore the cast behind the chaos.</p></div>
-  <div class="character-grid">
-    <article class="card reveal"><div class="card-img c1"></div><div class="card-body"><div class="role">The Fixer</div><h3>Lucia</h3><p>Sharp instincts, colder decisions. She knows every shortcut through the city.</p><a class="btn mini" href="#gallery">View character</a></div></article>
-    <article class="card reveal"><div class="card-img c2"></div><div class="card-body"><div class="role">The Driver</div><h3>Jason</h3><p>Fast hands, faster exits. When the sirens start, he is already gone.</p><a class="btn mini" href="#gallery">View character</a></div></article>
-    <article class="card reveal"><div class="card-img c3"></div><div class="card-body"><div class="role">The Wild Card</div><h3>Vincent</h3><p>A polished smile hiding an appetite for risk.</p><a class="btn mini" href="#gallery">View character</a></div></article>
-    <article class="card reveal"><div class="card-img c4"></div><div class="card-body"><div class="role">The Ghost</div><h3>Claude</h3><p>Quiet. Precise. Impossible to read.</p><a class="btn mini" href="#gallery">View character</a></div></article>
-    <article class="card reveal"><div class="card-img c5"></div><div class="card-body"><div class="role">The Enforcer</div><h3>Catalina</h3><p>Power, style and a very short fuse.</p><a class="btn mini" href="#gallery">View character</a></div></article>
-    <article class="card reveal"><div class="card-img c6"></div><div class="card-body"><div class="role">The Survivor</div><h3>Niko</h3><p>A hard past and a new city. Nothing is ever really left behind.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+
+  <div class="character-grid seven">
+    <article class="card reveal"><img class="character-img" src="assets/lusia.png" alt="Lusia Osmaeva"><div class="card-body"><div class="role">The Fixer</div><h3>Lusia Osmaeva</h3><p>Sharp instincts, colder decisions. She knows every shortcut through the city.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/elmir.png" alt="Elmir Duval"><div class="card-body"><div class="role">The Driver</div><h3>Elmir Duval</h3><p>Fast hands, faster exits. When the sirens start, he is already gone.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/cj.png" alt="CJ Neretin"><div class="card-body"><div class="role">The Wild Card</div><h3>CJ Neretin</h3><p>A street-smart operator with a reputation that travels ahead of him.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/ilya.png" alt="Ilya Belik"><div class="card-body"><div class="role">The Ghost</div><h3>Ilya Belik</h3><p>Quiet, precise and carrying a past that refuses to stay buried.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/igor.png" alt="Igor Versetti"><div class="card-body"><div class="role">The Kingpin</div><h3>Igor Versetti</h3><p>Style, ambition and an appetite for controlling the whole board.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/katalina.png" alt="Katalina Isaeva"><div class="card-body"><div class="role">The Enforcer</div><h3>Katalina Isaeva</h3><p>Power, style and a very short fuse. Never mistake calm for mercy.</p><a class="btn mini" href="#city">View character</a></div></article>
+    <article class="card reveal"><img class="character-img" src="assets/esman.png" alt="Clode Esman"><div class="card-body"><div class="role">The Silent One</div><h3>Clode Esman</h3><p>He says little, watches everything and leaves no loose ends.</p><a class="btn mini" href="#city">View character</a></div></article>
   </div>
 </section>
+
 
 <section class="section city-section" id="city">
   <div class="city-bg"></div>
-  <div class="section-head reveal" style="position:relative"><div><div class="eyebrow">02 / Live city data</div><h2>The City</h2></div><p class="lead">Live figures are read from the connected Google Sheet. The page refreshes automatically so the city can evolve with the file.</p></div>
-  <div class="city-grid">
-    <div class="city-main reveal"><div class="city-title"><div class="eyebrow">NEON METROPOLIS</div><h3>Every block<br>has a story.</h3><p>Downtown lights. Harbor deals. Midnight runs. Suburban secrets. Industrial pressure. Watch the numbers move as the city changes.</p></div></div>
-    <div>
-      <div class="stats" id="stats"></div>
-      <div class="sync" id="sync">SYNCING CITY DATA…</div>
-    </div>
+  <div class="section-head reveal" style="position:relative">
+    <div><div class="eyebrow">02 / Live city ranking</div><h2>The City</h2></div>
+    <p class="lead">The ranking is read only from the <strong>«Итог»</strong> sheet. Places are shown from 1 to 7 and refresh automatically.</p>
+  </div>
+  <div class="ranking-wrap">
+    <div class="ranking-head"><span>PLACE</span><span>CHARACTER / CITY INDEX</span><span>VALUE</span></div>
+    <div id="ranking" class="ranking"></div>
+    <div class="sync" id="sync">SYNCING CITY DATA…</div>
   </div>
 </section>
 
-<section class="section gallery" id="gallery">
+<section class="section story" id="gallery">
   <div class="section-head reveal"><div><div class="eyebrow">03 / Visual archive</div><h2>Gallery</h2></div><p class="lead">Posters, portraits and moments from the city. Click any frame for a fullscreen view.</p></div>
   <div class="masonry">
     <div class="g-item reveal"><img src="assets/characters-collage.png" alt="Grand Theft Neiro character collage"><div class="g-label">The Crew</div></div>
@@ -221,16 +249,8 @@ footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-co
   </div>
 </section>
 
-<section class="section" id="media">
-  <div class="section-head reveal"><div><div class="eyebrow">05 / Media</div><h2>Media</h2></div><p class="lead">A cinematic launch area ready for your trailer, gameplay clips and screenshots.</p></div>
-  <div class="media-grid">
-    <div class="media-main reveal"><div class="play">▶</div><div class="media-caption"><h3>Official Trailer</h3><p>DROP THE LINK TO YOUR VIDEO IN THE HTML CONFIG.</p></div></div>
-    <div class="media-side reveal"><h3>Latest<br>from the city</h3><div class="feed"><div>01 — NIGHT SHIFT / DOWNTOWN</div><div>02 — HARBOR RUN / 02:17 AM</div><div>03 — SUBURBAN HEAT / 04:46 AM</div><div>04 — INDUSTRIAL DISTRICT / LIVE</div></div></div>
-  </div>
-</section>
-
 <section class="cta">
-  <div class="reveal"><div class="eyebrow">06 / Your move</div><h2>Enter the city</h2><a class="btn primary" href="#top">Play now</a></div>
+  <div class="reveal"><div class="eyebrow">06 / Your move</div><h2>Enter the city</h2><a class="btn primary" href="#characters">Meet the crew</a></div>
 </section>
 </main>
 
@@ -240,27 +260,29 @@ footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-co
 
 <script>
 const SHEET_ID = "1HArOqLr2rFlgn8RDXPF9dRDbYKK2uLfNgzcAlZYZYBY";
-const SHEET_GID = "1974178009";
+const SHEET_GID = "597886415";
+const SHEET_NAME = "Итог";
+
 const fallback = [
-  ["Downtown", 82],["Nightlife", 67],["Harbor", 54],["Suburbs", 41],["Industrial District", 73]
+  ["Lusia Osmaeva", 0], ["Elmir Duval", 0], ["CJ Neretin", 0],
+  ["Ilya Belik", 0], ["Igor Versetti", 0], ["Katalina Isaeva", 0], ["Clode Esman", 0]
 ];
 
-const statsEl = document.getElementById("stats");
+const rankingEl = document.getElementById("ranking");
 const syncEl = document.getElementById("sync");
 
 function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
 
-function renderStats(items, live=true){
-  statsEl.innerHTML = items.slice(0,6).map(([name,value])=>{
-    const n = Number(value) || 0;
-    const pct = Math.max(0,Math.min(100,n));
-    return `<div class="stat" style="--pct:${pct/100}">
-      <div class="stat-name">${esc(name)}</div>
-      <div class="stat-value">${esc(value)}</div>
-      <div class="stat-meta">${live ? "Live from Google Sheets" : "Demo value — connect a public sheet"}</div>
+function renderRanking(items, live=true){
+  rankingEl.innerHTML = items.slice(0,7).map((item,i)=>{
+    const place=i+1, name=item[0], value=item[1];
+    return `<div class="rank-row ${place===1?'first':''}">
+      <div class="rank-place"><span class="rank-crown">♛</span>${place}</div>
+      <div><div class="rank-name">${esc(name)}</div><div class="rank-sub">Place ${place} / ${live?'Live from «Итог»':'Awaiting sheet data'}</div></div>
+      <div class="rank-value">${esc(value)}</div>
     </div>`;
   }).join("");
-  syncEl.textContent = live ? "● LIVE DATA · AUTO-REFRESH EVERY 60 SEC" : "● DEMO DATA · MAKE THE GOOGLE SHEET PUBLIC TO SYNC";
+  syncEl.textContent = live ? "● LIVE · SHEET «ИТОГ» · AUTO-REFRESH EVERY 60 SEC" : "● SHEET NOT AVAILABLE · PLACEHOLDER VALUES";
   syncEl.classList.toggle("error",!live);
 }
 
@@ -268,47 +290,42 @@ function parseGviz(text){
   const start=text.indexOf("{"), end=text.lastIndexOf("}");
   if(start<0||end<0) throw new Error("Invalid response");
   const obj=JSON.parse(text.slice(start,end+1));
-  const cols=obj.table.cols.map(c=>c.label||"");
   const rows=obj.table.rows.map(r=>r.c.map(c=>c?.v ?? ""));
+  const cols=obj.table.cols.map(c=>c.label||"");
   if(!rows.length) throw new Error("No rows");
-  const header=rows[0].map(String);
-  const districtWords=["downtown","nightlife","harbor","suburbs","industrial","district"];
-  const out=[];
-  // Case 1: rows are [district, value]
+
+  // Most useful layout: one row per character, first column = name, second = score.
+  let pairs=[];
   for(const row of rows){
-    if(row.length>=2 && typeof row[0]==="string" && row[0].trim() && !isNaN(Number(row[1]))){
-      out.push([row[0],row[1]]);
+    const name=String(row[0]??"").trim();
+    const value=row[1]??"";
+    if(name && value!=="" && !isNaN(Number(value))) pairs.push([name, Number(value)]);
+  }
+  if(pairs.length>=2) return pairs;
+
+  // Alternative: headers contain names and the first data row contains values.
+  if(rows.length>=1){
+    const row=rows[0];
+    const alt=[];
+    for(let i=0;i<cols.length;i++){
+      if(cols[i] && row[i]!=="" && !isNaN(Number(row[i]))) alt.push([cols[i],Number(row[i])]);
     }
+    if(alt.length>=2) return alt;
   }
-  if(out.length>=2) return out;
-  // Case 2: columns are district names and first data row contains values
-  const first=rows[0];
-  const fromCols=[];
-  for(let i=0;i<cols.length;i++){
-    if(cols[i] && !isNaN(Number(first[i]))) fromCols.push([cols[i],first[i]]);
-  }
-  if(fromCols.length>=2) return fromCols;
-  // Case 3: first row is headers, second row is values
-  if(rows.length>=2){
-    const row=rows[1];
-    const byHeaders=[];
-    for(let i=0;i<header.length;i++) if(header[i] && !isNaN(Number(row[i]))) byHeaders.push([header[i],row[i]]);
-    if(byHeaders.length>=2) return byHeaders;
-  }
-  return [];
+  throw new Error("Could not map ranking values");
 }
 
 async function loadSheet(){
   try{
-    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&headers=1`;
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&sheet=${encodeURIComponent(SHEET_NAME)}&headers=1`;
     const res=await fetch(url,{cache:"no-store"});
     if(!res.ok) throw new Error("HTTP "+res.status);
     const text=await res.text();
     const items=parseGviz(text);
-    if(!items.length) throw new Error("Could not map numeric stats");
-    renderStats(items,true);
+    // Preserve sheet order: the first row becomes 1st place, etc.
+    renderRanking(items,true);
   }catch(e){
-    renderStats(fallback,false);
+    renderRanking(fallback,false);
     console.warn("Google Sheets sync failed:",e);
   }
 }
@@ -322,16 +339,6 @@ const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
 },{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-
-const lb=document.getElementById("lightbox"), lbImg=document.getElementById("lightboxImg");
-document.querySelectorAll(".g-item").forEach(item=>{
-  item.addEventListener("click",()=>{
-    const img=item.querySelector("img"); lbImg.src=img.src; lbImg.alt=img.alt; lb.classList.add("open");
-  });
-});
-document.querySelector(".close").onclick=()=>lb.classList.remove("open");
-lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("open")});
-document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
 </script>
 </body>
 </html>

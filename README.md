@@ -1,22 +1,14 @@
-# GRAND THEFT NEIRO — static site
+# GRAND THEFT NEIRO — v2
 
-## Run locally
-Open `index.html` in a browser, or use any static web server.
+Updated:
+- Characters now contains exactly 7 characters:
+  Lusia Osmaeva, Elmir Duval, CJ Neretin, Ilya Belik, Igor Versetti, Katalina Isaeva, Clode Esman.
+- Each character has its own image file.
+- Gallery and Media sections removed.
+- The City now reads Google Sheets sheet «Итог» using GID 597886415.
+- Ranking is displayed 1–7.
+- First place has a gold treatment and crown on the left.
+- Data refreshes every 60 seconds.
 
-## Google Sheets live statistics
-The site is configured for:
-- Spreadsheet ID: 1HArOqLr2rFlgn8RDXPF9dRDbYKK2uLfNgzcAlZYZYBY
-- Sheet GID: 1974178009
-
-For browser-side live syncing, the sheet must be accessible publicly (or published to the web).
-The JavaScript polls the Google Visualization endpoint every 60 seconds.
-
-The parser accepts common layouts such as:
-1. rows: `Downtown | 82`
-2. columns: `Downtown | Nightlife | Harbor ...` with numeric values
-3. header row followed by a numeric data row
-
-If the sheet is unavailable, the site displays demo values rather than breaking.
-
-## Publish
-Upload the contents of this folder to any static hosting provider (for example Vercel, Netlify, GitHub Pages, Cloudflare Pages, or your own server). No backend is required for the front-end.
+Google Sheets note:
+The browser-side Google Visualization endpoint requires the spreadsheet to be publicly readable/published.
