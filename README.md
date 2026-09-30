@@ -1,14 +1,11 @@
-# GRAND THEFT NEIRO — v2
+# GRAND THEFT NEIRO — v3
 
-Updated:
-- Characters now contains exactly 7 characters:
-  Lusia Osmaeva, Elmir Duval, CJ Neretin, Ilya Belik, Igor Versetti, Katalina Isaeva, Clode Esman.
-- Each character has its own image file.
-- Gallery and Media sections removed.
-- The City now reads Google Sheets sheet «Итог» using GID 597886415.
-- Ranking is displayed 1–7.
-- First place has a gold treatment and crown on the left.
-- Data refreshes every 60 seconds.
+Updated to SEVEN, Conditions, The City Boss and Gangsters.
 
-Google Sheets note:
-The browser-side Google Visualization endpoint requires the spreadsheet to be publicly readable/published.
+- Conditions uses the supplied Conditions.png image only.
+- The City Boss reads Google Sheets sheet «Итог» (GID 597886415), top 7.
+- Gangsters reads Google Sheets sheet «Итог фреш», top 4.
+- First place is gold; Gangsters uses a pistol icon at first place.
+- Rankings refresh every 60 seconds.
+
+The Google spreadsheet must be publicly readable/published for browser-side GViz access.

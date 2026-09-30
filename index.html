@@ -1,344 +1,46 @@
 <!doctype html>
 <html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<meta name="theme-color" content="#09060d">
-<meta name="description" content="GRAND THEFT NEIRO — a cinematic open-world crime universe.">
-<title>GRAND THEFT NEIRO</title>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>GRAND THEFT NEIRO — SEVEN</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
-
-:root{
-  --bg:#08070b; --paper:#f6f2ea; --muted:#a8a3b2; --line:rgba(255,255,255,.13);
-  --pink:#ff3dbb; --purple:#7c4dff; --orange:#ff7a2f; --cyan:#38d8ff;
-}
-*{box-sizing:border-box}
-html{scroll-behavior:smooth}
-body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
-a{color:inherit;text-decoration:none}
-button{font:inherit}
-.nav{position:fixed;z-index:50;top:0;left:0;right:0;padding:22px 4vw;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,.72),transparent);backdrop-filter:blur(5px)}
-.brand{font:900 24px/1 'Barlow Condensed';letter-spacing:.02em}
-.brand span{color:var(--pink)}
-.navlinks{display:flex;gap:28px;font-size:12px;text-transform:uppercase;letter-spacing:.16em}
-.navlinks a{opacity:.78;transition:.25s}.navlinks a:hover{opacity:1;color:#fff;text-shadow:0 0 18px var(--pink)}
-.menu{display:none;background:none;border:0;color:#fff;font-size:24px}
-
-.hero{min-height:100svh;position:relative;display:grid;place-items:end;overflow:hidden}
-.hero-bg{position:absolute;inset:-4%;background:
-linear-gradient(180deg,rgba(7,4,13,.1) 10%,rgba(7,4,13,.45) 55%,#08070b 100%),
-radial-gradient(circle at 74% 20%,rgba(255,61,187,.65),transparent 25%),
-radial-gradient(circle at 28% 35%,rgba(56,216,255,.38),transparent 26%),
-linear-gradient(125deg,#160b2a,#25103e 40%,#0a1827);
-transform:scale(1.04);animation:drift 18s ease-in-out infinite alternate}
-.hero-bg:after{content:"";position:absolute;inset:0;background:
-linear-gradient(90deg,rgba(255,61,187,.14),transparent 35%,rgba(56,216,255,.1)),
-repeating-linear-gradient(100deg,transparent 0 70px,rgba(255,255,255,.035) 71px 72px)}
-.city{position:absolute;left:0;right:0;bottom:0;height:58%;opacity:.75;
-background:
-linear-gradient(180deg,transparent 0 20%,rgba(5,5,12,.3)),
-linear-gradient(90deg,transparent 0 5%,rgba(255,61,187,.25) 5.2% 5.7%,transparent 5.9% 16%,rgba(56,216,255,.2) 16.2% 17%,transparent 17.2% 29%,rgba(255,122,47,.2) 29.2% 30%,transparent 30.2% 43%,rgba(124,77,255,.28) 43.2% 44%,transparent 44.2% 57%,rgba(56,216,255,.2) 57.2% 58%,transparent 58.2% 72%,rgba(255,61,187,.25) 72.2% 73%,transparent 73.2%);
-filter:blur(1px)}
-.palms{position:absolute;inset:0;pointer-events:none;opacity:.4}
-.palms:before,.palms:after{content:"";position:absolute;bottom:18%;width:240px;height:420px;border-left:18px solid #08070b;border-radius:50%;transform:rotate(13deg)}
-.palms:before{left:4%}.palms:after{right:7%;transform:scaleX(-1) rotate(13deg)}
-.hero-content{position:relative;z-index:3;width:min(1240px,92vw);padding:0 0 9vh}
-.kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#d7d1dc;margin-bottom:14px}
-h1{font:900 clamp(76px,13vw,190px)/.78 'Barlow Condensed';text-transform:uppercase;margin:0;letter-spacing:-.035em;max-width:1050px;text-shadow:10px 10px 0 rgba(0,0,0,.55)}
-h1 .pink{color:var(--pink)} h1 .outline{color:transparent;-webkit-text-stroke:2px #fff}
-.hero-sub{margin:28px 0 30px;font:600 clamp(16px,2vw,24px)/1.1 'Barlow Condensed';letter-spacing:.25em;text-transform:uppercase}
-.actions{display:flex;gap:12px;flex-wrap:wrap}
-.btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;padding:15px 22px;border:1px solid rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;transition:.25s;cursor:pointer}
-.btn.primary{background:var(--paper);color:#0a0810;border-color:var(--paper)}
-.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
-.scroll{position:absolute;right:4vw;bottom:38px;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:.3em;font-size:9px;color:#bbb;z-index:4}
-
-.section{padding:120px 4vw;position:relative}
-.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
-.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
-h2{font:800 clamp(48px,8vw,100px)/.85 'Barlow Condensed';margin:0;text-transform:uppercase;letter-spacing:-.02em}
-.lead{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7}
-
-.characters{background:
-radial-gradient(circle at 10% 0,rgba(255,61,187,.1),transparent 30%),
-linear-gradient(180deg,#08070b,#0d0b13)}
-.character-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
-.card{min-height:510px;position:relative;overflow:hidden;border:1px solid var(--line);background:#111;isolation:isolate}
-.card:nth-child(2){transform:translateY(42px)}.card:nth-child(5){transform:translateY(42px)}
-.card-img{position:absolute;inset:0;background-image:url("assets/characters-collage.png");background-size:220% auto;background-repeat:no-repeat;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:saturate(1.15) contrast(1.05)}
-.c1{background-position:0% 0%}.c2{background-position:50% 0%}.c3{background-position:100% 0%}
-.c4{background-position:0% 52%}.c5{background-position:55% 52%}.c6{background-position:100% 52%}
-.card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.15) 50%,rgba(0,0,0,.9) 100%);z-index:1}
-.card:hover .card-img{transform:scale(1.07)}
-.card-body{position:absolute;z-index:2;left:22px;right:22px;bottom:22px}
-.role{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#ddd;margin-bottom:8px}
-.card h3{font:800 48px/.9 'Barlow Condensed';text-transform:uppercase;margin:0 0 10px}
-.card p{font-size:12px;color:#d0ccd3;line-height:1.5;margin:0 0 18px;max-width:330px}
-.mini{font-size:9px;padding:10px 13px;min-width:auto}
-
-.city-section{overflow:hidden;background:#05060a}
-.city-bg{position:absolute;inset:0;background:
-radial-gradient(circle at 75% 40%,rgba(56,216,255,.22),transparent 30%),
-linear-gradient(180deg,rgba(5,6,10,.1),rgba(5,6,10,.95)),
-linear-gradient(110deg,#111527,#0c101b 45%,#190b20);opacity:.8}
-.city-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
-.city-main{min-height:610px;border:1px solid var(--line);position:relative;overflow:hidden;padding:32px;display:flex;align-items:end;background:
-linear-gradient(180deg,transparent 40%,rgba(0,0,0,.8)),
-radial-gradient(circle at 50% 10%,rgba(255,61,187,.38),transparent 35%),
-linear-gradient(135deg,#15152a,#07101c)}
-.city-main:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(88deg,transparent 0 58px,rgba(255,255,255,.025) 59px 60px)}
-.city-title{position:relative}.city-title h3{font:800 clamp(52px,7vw,100px)/.8 'Barlow Condensed';margin:0;text-transform:uppercase}
-.city-title p{color:#aaa;max-width:420px;line-height:1.6;font-size:13px}
-.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.stat{min-height:190px;padding:24px;border:1px solid var(--line);background:rgba(255,255,255,.035);backdrop-filter:blur(12px);position:relative;overflow:hidden}
-.stat:before{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--cyan));transform:scaleX(var(--pct,0));transform-origin:left;transition:1s}
-.stat-name{font:700 17px 'Barlow Condensed';text-transform:uppercase;letter-spacing:.08em;color:#ddd}
-.stat-value{font:900 64px/.9 'Barlow Condensed';margin-top:20px}
-.stat-meta{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:#777;margin-top:8px}
-.sync{margin-top:18px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#7fdfff}
-.sync.error{color:#ff9c9c}
-
-.gallery{background:#0b0910}
-.masonry{columns:3 280px;column-gap:14px}
-.g-item{break-inside:avoid;margin:0 0 14px;position:relative;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;background:#14111a}
-.g-item img{width:100%;display:block;transition:.5s;filter:saturate(1.15)}
-.g-item:hover img{transform:scale(1.05)}
-.g-label{position:absolute;left:14px;bottom:14px;font:700 20px 'Barlow Condensed';text-transform:uppercase;text-shadow:2px 2px 0 #000}
-
-.story{min-height:80vh;display:grid;place-items:center;overflow:hidden;background:
-linear-gradient(90deg,rgba(5,4,9,.96),rgba(5,4,9,.48),rgba(5,4,9,.96)),
-radial-gradient(circle at 50% 45%,rgba(255,61,187,.32),transparent 32%),
-linear-gradient(120deg,#160c22,#061321)}
-.story-inner{text-align:center;max-width:1000px}
-.story-quote{font:800 clamp(58px,10vw,150px)/.82 'Barlow Condensed';text-transform:uppercase;letter-spacing:-.025em}
-.story-quote span{color:var(--pink)}
-.story-small{margin-top:25px;color:#aaa;font-size:12px;letter-spacing:.25em;text-transform:uppercase}
-
-.media-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:16px}
-.media-main,.media-side{min-height:460px;border:1px solid var(--line);position:relative;overflow:hidden}
-.media-main{background:
-linear-gradient(180deg,transparent 35%,rgba(0,0,0,.9)),
-radial-gradient(circle at 50% 30%,rgba(56,216,255,.35),transparent 25%),
-linear-gradient(135deg,#27103a,#08111c)}
-.media-main .play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;border:1px solid #fff;display:grid;place-items:center;font-size:28px;background:rgba(0,0,0,.25);backdrop-filter:blur(8px)}
-.media-caption{position:absolute;left:28px;bottom:28px}.media-caption h3{font:800 54px/.85 'Barlow Condensed';margin:0;text-transform:uppercase}.media-caption p{color:#aaa;font-size:12px}
-.media-side{padding:24px;background:linear-gradient(135deg,rgba(255,61,187,.12),rgba(56,216,255,.05))}
-.media-side h3{font:800 42px/.9 'Barlow Condensed';text-transform:uppercase;margin:0 0 22px}
-.feed{display:grid;gap:10px}.feed div{padding:14px;border:1px solid var(--line);font-size:11px;color:#c5c0c9}
-
-.cta{padding:140px 4vw;text-align:center;position:relative;overflow:hidden;background:
-radial-gradient(circle at 50% 50%,rgba(255,61,187,.35),transparent 25%),
-linear-gradient(135deg,#0d0714,#07131c)}
-.cta h2{font-size:clamp(80px,15vw,210px)}
-footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#777;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
-
-.lightbox{position:fixed;z-index:100;inset:0;background:rgba(0,0,0,.9);display:none;place-items:center;padding:4vw;backdrop-filter:blur(12px)}
-.lightbox.open{display:grid}.lightbox img{max-width:94vw;max-height:90vh;object-fit:contain;box-shadow:0 30px 100px #000}
-.close{position:absolute;right:28px;top:22px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer}
-
-.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.reveal.show{opacity:1;transform:none}
-@keyframes drift{to{transform:scale(1.08) translate3d(-1%,1%,0)}}
-
-@media(max-width:800px){
- .navlinks{display:none}.menu{display:block}
- .nav.open .navlinks{display:flex;position:absolute;top:70px;right:4vw;flex-direction:column;background:rgba(10,8,14,.94);padding:20px;border:1px solid var(--line)}
- .section{padding:90px 5vw}.section-head{display:block}.lead{margin-top:18px}
- .character-grid{grid-template-columns:1fr}.card,.card:nth-child(2),.card:nth-child(5){min-height:500px;transform:none}
- .city-grid,.media-grid{grid-template-columns:1fr}.city-main{min-height:430px}.stats{grid-template-columns:1fr 1fr}
- .masonry{columns:2 150px}.hero-content{padding-bottom:12vh}.scroll{display:none}
-}
-@media(max-width:480px){
- h1{font-size:78px}.stats{grid-template-columns:1fr}.masonry{columns:1}.btn{width:100%}
- footer{display:block;line-height:2}
-}
-
-.character-grid.seven{grid-template-columns:repeat(4,1fr)}
-.character-grid.seven .card:nth-child(2),
-.character-grid.seven .card:nth-child(5){transform:none}
-.character-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:saturate(1.12) contrast(1.05)}
-.card:hover .character-img{transform:scale(1.07)}
-.card{min-height:540px}
-.ranking-wrap{position:relative;border:1px solid var(--line);background:rgba(255,255,255,.025);backdrop-filter:blur(10px);overflow:hidden}
-.ranking-head,.rank-row{display:grid;grid-template-columns:110px 1fr 150px;align-items:center}
-.ranking-head{padding:14px 22px;color:#777;font-size:9px;letter-spacing:.2em;border-bottom:1px solid var(--line)}
-.ranking{display:grid}
-.rank-row{min-height:90px;padding:10px 22px;border-bottom:1px solid var(--line);transition:.25s;position:relative}
-.rank-row:hover{background:rgba(255,255,255,.035)}
-.rank-place{font:900 48px/.8 'Barlow Condensed';color:#777;display:flex;align-items:center;gap:12px}
-.rank-crown{font-size:28px;display:none}
-.rank-name{font:800 30px/.9 'Barlow Condensed';text-transform:uppercase}
-.rank-sub{font-size:9px;color:#777;letter-spacing:.15em;text-transform:uppercase;margin-top:6px}
-.rank-value{text-align:right;font:800 36px/.9 'Barlow Condensed'}
-.rank-row.first{background:linear-gradient(90deg,rgba(255,196,62,.18),rgba(255,196,62,.055),transparent);border-left:4px solid #d9a52e}
-.rank-row.first .rank-place,.rank-row.first .rank-value{color:#f2c55d}
-.rank-row.first .rank-crown{display:inline-block}
-.rank-row.first:after{content:"";position:absolute;inset:0;pointer-events:none;box-shadow:inset 0 0 50px rgba(255,196,62,.06)}
-@media(max-width:1000px){.character-grid.seven{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:800px){.character-grid.seven{grid-template-columns:1fr}.ranking-head,.rank-row{grid-template-columns:75px 1fr 90px}.rank-name{font-size:24px}.rank-value{font-size:28px}}
-</style>
-</head>
-<body>
-<header class="nav" id="nav">
-  <a class="brand" href="#top">GRAND <span>THEFT</span> NEIRO</a>
-  <nav class="navlinks">
-    <a href="#characters">Characters</a><a href="#city">The City</a><a href="#story">Story</a>
-  </nav>
-  <button class="menu" aria-label="Menu">☰</button>
-</header>
-
-<main id="top">
-<section class="hero">
-  <div class="hero-bg"></div><div class="city"></div><div class="palms"></div>
-  <div class="hero-content reveal">
-    <div class="kicker">A NEW CRIME UNIVERSE · 2026</div>
-    <h1>GRAND <span class="pink">THEFT</span><br><span class="outline">NEIRO</span></h1>
-    <div class="hero-sub">THE CITY IS YOURS</div>
-    <div class="actions">
-      <a class="btn primary" href="#city">Explore</a>
-      <a class="btn" href="#characters">Meet the characters</a>
-    </div>
-  </div>
-  <div class="scroll">Scroll to enter the city ↓</div>
-</section>
-
-<section class="section characters" id="characters">
-  <div class="section-head reveal"><div><div class="eyebrow">01 / The crew</div><h2>Characters</h2></div><p class="lead">Six faces. Six motives. One city where every decision leaves a mark. Explore the cast behind the chaos.</p></div>
-
-  <div class="character-grid seven">
-    <article class="card reveal"><img class="character-img" src="assets/lusia.png" alt="Lusia Osmaeva"><div class="card-body"><div class="role">The Fixer</div><h3>Lusia Osmaeva</h3><p>Sharp instincts, colder decisions. She knows every shortcut through the city.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/elmir.png" alt="Elmir Duval"><div class="card-body"><div class="role">The Driver</div><h3>Elmir Duval</h3><p>Fast hands, faster exits. When the sirens start, he is already gone.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/cj.png" alt="CJ Neretin"><div class="card-body"><div class="role">The Wild Card</div><h3>CJ Neretin</h3><p>A street-smart operator with a reputation that travels ahead of him.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/ilya.png" alt="Ilya Belik"><div class="card-body"><div class="role">The Ghost</div><h3>Ilya Belik</h3><p>Quiet, precise and carrying a past that refuses to stay buried.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/igor.png" alt="Igor Versetti"><div class="card-body"><div class="role">The Kingpin</div><h3>Igor Versetti</h3><p>Style, ambition and an appetite for controlling the whole board.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/katalina.png" alt="Katalina Isaeva"><div class="card-body"><div class="role">The Enforcer</div><h3>Katalina Isaeva</h3><p>Power, style and a very short fuse. Never mistake calm for mercy.</p><a class="btn mini" href="#city">View character</a></div></article>
-    <article class="card reveal"><img class="character-img" src="assets/esman.png" alt="Clode Esman"><div class="card-body"><div class="role">The Silent One</div><h3>Clode Esman</h3><p>He says little, watches everything and leaves no loose ends.</p><a class="btn mini" href="#city">View character</a></div></article>
-  </div>
-</section>
-
-
-<section class="section city-section" id="city">
-  <div class="city-bg"></div>
-  <div class="section-head reveal" style="position:relative">
-    <div><div class="eyebrow">02 / Live city ranking</div><h2>The City</h2></div>
-    <p class="lead">The ranking is read only from the <strong>«Итог»</strong> sheet. Places are shown from 1 to 7 and refresh automatically.</p>
-  </div>
-  <div class="ranking-wrap">
-    <div class="ranking-head"><span>PLACE</span><span>CHARACTER / CITY INDEX</span><span>VALUE</span></div>
-    <div id="ranking" class="ranking"></div>
-    <div class="sync" id="sync">SYNCING CITY DATA…</div>
-  </div>
-</section>
-
-<section class="section story" id="gallery">
-  <div class="section-head reveal"><div><div class="eyebrow">03 / Visual archive</div><h2>Gallery</h2></div><p class="lead">Posters, portraits and moments from the city. Click any frame for a fullscreen view.</p></div>
-  <div class="masonry">
-    <div class="g-item reveal"><img src="assets/characters-collage.png" alt="Grand Theft Neiro character collage"><div class="g-label">The Crew</div></div>
-    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:70% 0" alt="Neon city characters"><div class="g-label">Vice Nights</div></div>
-    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:20% 65%" alt="City poster"><div class="g-label">Liberty Heat</div></div>
-    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:85% 55%" alt="Character poster"><div class="g-label">No Rules</div></div>
-    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:50% 100%" alt="Waterfront skyline"><div class="g-label">After Dark</div></div>
-  </div>
-</section>
-
-<section class="section story" id="story">
-  <div class="story-inner reveal">
-    <div class="eyebrow">04 / The story</div>
-    <div class="story-quote">One city.<br><span>Six stories.</span><br>No rules.</div>
-    <div class="story-small">Trust is expensive. Loyalty costs more.</div>
-  </div>
-</section>
-
-<section class="cta">
-  <div class="reveal"><div class="eyebrow">06 / Your move</div><h2>Enter the city</h2><a class="btn primary" href="#characters">Meet the crew</a></div>
-</section>
+:root{--bg:#07060d;--panel:#0d0a14;--line:rgba(255,255,255,.13);--pink:#ff16c7;--cyan:#00eaff;--gold:#ffc43d;--white:#f8f6ff}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--white);font-family:Inter,system-ui,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.noise{position:fixed;inset:0;pointer-events:none;opacity:.035;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.8' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+nav{position:fixed;z-index:50;top:0;left:0;right:0;height:78px;display:flex;align-items:center;justify-content:center;gap:44px;background:linear-gradient(180deg,rgba(3,2,8,.9),rgba(3,2,8,.35),transparent);backdrop-filter:blur(6px)}nav a{font:800 15px/1 'Barlow Condensed';letter-spacing:.09em;text-transform:uppercase;color:#b8b4c5;transition:.2s}nav a:hover,nav a.active{color:#fff;text-shadow:0 0 18px var(--pink)}.logo{position:absolute;left:22px;top:12px;font:900 20px/0.82 'Barlow Condensed';letter-spacing:-.04em;text-transform:uppercase}.logo span{display:block}.logo .vii{color:#ff204c;font-size:25px;margin-left:10px}.hero{min-height:100vh;display:grid;place-items:center;position:relative;overflow:hidden;background:radial-gradient(circle at 50% 70%,rgba(255,21,200,.2),transparent 34%),linear-gradient(180deg,#100521,#07060d 78%)}.hero:before{content:"";position:absolute;inset:0;background:linear-gradient(180deg,rgba(255,0,160,.06),transparent 55%),repeating-linear-gradient(90deg,transparent 0 11vw,rgba(0,234,255,.03) 11vw 11.2vw);transform:skewY(-3deg) scale(1.1)}.hero-copy{position:relative;text-align:center;z-index:2;padding:120px 20px 80px}.eyebrow{font-size:11px;letter-spacing:.3em;text-transform:uppercase;color:#aaa}.hero h1{font:900 clamp(80px,15vw,220px)/.78 'Barlow Condensed';margin:22px 0 16px;text-transform:uppercase;letter-spacing:-.055em;background:linear-gradient(180deg,#fff,#ff4bd9 48%,#ff9b24);-webkit-background-clip:text;background-clip:text;color:transparent;filter:drop-shadow(0 12px 30px rgba(255,0,170,.25))}.hero p{font:800 clamp(18px,2.5vw,34px)/1 'Barlow Condensed';letter-spacing:.16em}.actions{display:flex;gap:12px;justify-content:center;margin-top:30px;flex-wrap:wrap}.btn{display:inline-flex;align-items:center;justify-content:center;padding:15px 24px;border:1px solid rgba(255,255,255,.3);background:rgba(255,255,255,.05);font:800 12px/1 'Inter';letter-spacing:.12em;text-transform:uppercase;transition:.25s}.btn:hover{transform:translateY(-3px);box-shadow:0 12px 35px rgba(255,0,190,.22);border-color:var(--pink)}.btn.primary{background:linear-gradient(90deg,#ff149c,#ff4b39);border-color:transparent}.section{padding:115px 5vw;position:relative}.section-head{display:flex;align-items:end;justify-content:space-between;gap:40px;margin-bottom:38px}.section h2{font:900 clamp(52px,8vw,110px)/.78 'Barlow Condensed';margin:10px 0 0;text-transform:uppercase;letter-spacing:-.04em}.lead{max-width:510px;color:#aaa;line-height:1.6}.character-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{min-height:520px;position:relative;overflow:hidden;border:1px solid var(--line);background:#111}.card:nth-child(2),.card:nth-child(5){transform:translateY(25px)}.character-img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;transition:.6s}.card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.9) 88%)}.card:hover .character-img{transform:scale(1.07)}.card-body{position:absolute;z-index:2;left:20px;right:20px;bottom:20px}.role{font-size:9px;letter-spacing:.18em;color:#ff65d9;text-transform:uppercase}.card h3{font:900 34px/.85 'Barlow Condensed';margin:8px 0;text-transform:uppercase}.card p{color:#bbb;font-size:12px;line-height:1.5}.mini{padding:10px 14px;font-size:9px}.city{background:linear-gradient(180deg,#08070f,#0b0710)}.ranking-wrap{border:1px solid var(--line);background:rgba(255,255,255,.025);backdrop-filter:blur(10px)}.ranking-head,.rank-row{display:grid;grid-template-columns:120px 1fr 170px;align-items:center}.ranking-head{padding:13px 20px;color:#777;font-size:9px;letter-spacing:.2em;border-bottom:1px solid var(--line)}.rank-row{min-height:92px;padding:10px 20px;border-bottom:1px solid var(--line);position:relative}.rank-place{font:900 48px/.8 'Barlow Condensed';color:#777;display:flex;align-items:center;gap:12px}.rank-name{font:800 30px/.9 'Barlow Condensed';text-transform:uppercase}.rank-sub{font-size:9px;color:#777;letter-spacing:.12em;text-transform:uppercase;margin-top:6px}.rank-value{text-align:right;font:800 36px/.9 'Barlow Condensed'}.rank-row.first{background:linear-gradient(90deg,rgba(255,196,62,.2),rgba(255,196,62,.045),transparent);border-left:4px solid var(--gold)}.rank-row.first .rank-place,.rank-row.first .rank-value{color:#f4c95f}.rank-icon{font-size:25px}.gangsters{background:radial-gradient(circle at 70% 40%,rgba(0,234,255,.09),transparent 30%),#08080e}.gangsters .rank-row.first{border-left-color:var(--cyan);background:linear-gradient(90deg,rgba(255,196,62,.18),rgba(0,234,255,.04),transparent)}.gangsters .rank-row.first .rank-place,.gangsters .rank-row.first .rank-value{color:#f4c95f}.conditions{background:#05050a}.condition-frame{border:1px solid var(--line);padding:8px;background:#000;max-width:1500px;margin:auto}.condition-frame img{display:block;width:100%;height:auto}.story{background:linear-gradient(135deg,#0b0713,#07060d)}.story-box{display:grid;grid-template-columns:1.1fr .9fr;min-height:500px;border:1px solid var(--line);overflow:hidden}.story-art{background:radial-gradient(circle at 70% 30%,#ff179f,transparent 25%),linear-gradient(135deg,#15072a,#071018);display:grid;place-items:center;font:900 100px/.75 'Barlow Condensed';color:rgba(255,255,255,.08)}.story-copy{padding:70px;display:flex;flex-direction:column;justify-content:center}.story-copy h3{font:900 clamp(48px,6vw,90px)/.82 'Barlow Condensed';margin:0;text-transform:uppercase}.cta{min-height:65vh;display:grid;place-items:center;text-align:center;background:radial-gradient(circle at center,rgba(255,0,170,.18),transparent 35%),#06050b}.cta h2{font:900 clamp(70px,13vw,180px)/.75 'Barlow Condensed';margin:0;text-transform:uppercase}.sync{padding:13px 20px;color:#777;font-size:9px;letter-spacing:.16em}.sync.error{color:#ff8d8d}.reveal{opacity:0;transform:translateY(30px);transition:.8s}.reveal.show{opacity:1;transform:none}@media(max-width:1050px){.character-grid{grid-template-columns:repeat(2,1fr)}.story-box{grid-template-columns:1fr}.story-art{min-height:260px}}@media(max-width:700px){nav{gap:14px;height:65px}nav a{font-size:11px}.logo{display:none}.section{padding:80px 5vw}.section-head{display:block}.character-grid{grid-template-columns:1fr}.card:nth-child(2),.card:nth-child(5){transform:none}.ranking-head,.rank-row{grid-template-columns:65px 1fr 90px}.rank-name{font-size:23px}.rank-value{font-size:25px}.story-copy{padding:40px}.hero h1{font-size:26vw}}
+</style></head>
+<body><div class="noise"></div>
+<nav><div class="logo"><span>GRAND</span><span>THEFT</span><span>AUTO <b class="vii">VII</b></span></div><a href="#home">Home</a><a class="active" href="#characters">Seven</a><a href="#conditions">Conditions</a><a href="#city-boss">The City Boss</a><a href="#gangsters">Gangsters</a></nav>
+<main>
+<section class="hero" id="home"><div class="hero-copy"><div class="eyebrow">One city · Seven stories · No rules</div><h1>SEVEN</h1><p>THE CITY IS YOURS</p><div class="actions"><a class="btn primary" href="#characters">Explore</a><a class="btn" href="#characters">Meet the characters</a></div></div></section>
+<section class="section" id="characters"><div class="section-head reveal"><div><div class="eyebrow">01 / The crew</div><h2>Characters</h2></div><p class="lead">Seven operators. Seven different ways to own the city. Choose your side.</p></div>
+<div class="character-grid">
+<article class="card reveal"><img class="character-img" src="assets/lusia.png"><div class="card-body"><div class="role">The Fixer</div><h3>Lusia Osmaeva</h3><p>Sharp instincts, colder decisions.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/elmir.png"><div class="card-body"><div class="role">The Driver</div><h3>Elmir Duval</h3><p>Fast hands, faster exits.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/cj.png"><div class="card-body"><div class="role">The Wild Card</div><h3>CJ Neretin</h3><p>A street-smart operator.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/ilya.png"><div class="card-body"><div class="role">The Ghost</div><h3>Ilya Belik</h3><p>Quiet, precise, impossible to predict.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/igor.png"><div class="card-body"><div class="role">The Kingpin</div><h3>Igor Versetti</h3><p>Style, ambition and control.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/katalina.png"><div class="card-body"><div class="role">The Enforcer</div><h3>Katalina Isaeva</h3><p>Power, style and a short fuse.</p></div></article>
+<article class="card reveal"><img class="character-img" src="assets/esman.png"><div class="card-body"><div class="role">The Silent One</div><h3>Clode Esman</h3><p>He watches everything.</p></div></article>
+</div></section>
+<section class="section conditions" id="conditions"><div class="section-head reveal"><div><div class="eyebrow">02 / The rules</div><h2>Conditions</h2></div><p class="lead">The rules of the city, captured in one cinematic frame.</p></div><div class="condition-frame reveal"><img src="assets/Conditions.png" alt="Conditions"></div></section>
+<section class="section city" id="city-boss"><div class="section-head reveal"><div><div class="eyebrow">03 / Top seven</div><h2>The City Boss</h2></div><p class="lead">Live ranking from the <strong>«Итог»</strong> sheet. Places 1–7.</p></div><div class="ranking-wrap reveal"><div class="ranking-head"><span>PLACE</span><span>NAME</span><span>VALUE</span></div><div id="cityRanking"></div><div class="sync" id="citySync">SYNCING…</div></div></section>
+<section class="section gangsters" id="gangsters"><div class="section-head reveal"><div><div class="eyebrow">04 / Top four</div><h2>Gangsters</h2></div><p class="lead">Fresh ranking from the <strong>«Итог фреш»</strong> sheet. Places 1–4.</p></div><div class="ranking-wrap reveal"><div class="ranking-head"><span>PLACE</span><span>NAME</span><span>VALUE</span></div><div id="gangRanking"></div><div class="sync" id="gangSync">SYNCING…</div></div></section>
+<section class="section story"><div class="section-head reveal"><div><div class="eyebrow">05 / The story</div><h2>Story</h2></div></div><div class="story-box reveal"><div class="story-art">SEVEN<br>STORIES</div><div class="story-copy"><h3>One city.<br>Seven stories.<br>No rules.</h3><p class="lead">Every choice changes the balance of power. Every name leaves a mark.</p></div></div></section>
+<section class="cta"><div><div class="eyebrow">The city is waiting</div><h2>ENTER<br>THE CITY</h2><a class="btn primary" href="#characters">Meet the crew</a></div></section>
 </main>
-
-<footer><span>GRAND THEFT NEIRO</span><span>© 2026 · THE CITY IS YOURS</span></footer>
-
-<div class="lightbox" id="lightbox"><button class="close" aria-label="Close">×</button><img id="lightboxImg" alt=""></div>
-
 <script>
-const SHEET_ID = "1HArOqLr2rFlgn8RDXPF9dRDbYKK2uLfNgzcAlZYZYBY";
-const SHEET_GID = "597886415";
-const SHEET_NAME = "Итог";
-
-const fallback = [
-  ["Lusia Osmaeva", 0], ["Elmir Duval", 0], ["CJ Neretin", 0],
-  ["Ilya Belik", 0], ["Igor Versetti", 0], ["Katalina Isaeva", 0], ["Clode Esman", 0]
-];
-
-const rankingEl = document.getElementById("ranking");
-const syncEl = document.getElementById("sync");
-
-function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
-
-function renderRanking(items, live=true){
-  rankingEl.innerHTML = items.slice(0,7).map((item,i)=>{
-    const place=i+1, name=item[0], value=item[1];
-    return `<div class="rank-row ${place===1?'first':''}">
-      <div class="rank-place"><span class="rank-crown">♛</span>${place}</div>
-      <div><div class="rank-name">${esc(name)}</div><div class="rank-sub">Place ${place} / ${live?'Live from «Итог»':'Awaiting sheet data'}</div></div>
-      <div class="rank-value">${esc(value)}</div>
-    </div>`;
-  }).join("");
-  syncEl.textContent = live ? "● LIVE · SHEET «ИТОГ» · AUTO-REFRESH EVERY 60 SEC" : "● SHEET NOT AVAILABLE · PLACEHOLDER VALUES";
-  syncEl.classList.toggle("error",!live);
-}
-
-function parseGviz(text){
-  const start=text.indexOf("{"), end=text.lastIndexOf("}");
-  if(start<0||end<0) throw new Error("Invalid response");
-  const obj=JSON.parse(text.slice(start,end+1));
-  const rows=obj.table.rows.map(r=>r.c.map(c=>c?.v ?? ""));
-  const cols=obj.table.cols.map(c=>c.label||"");
-  if(!rows.length) throw new Error("No rows");
-
-  // Most useful layout: one row per character, first column = name, second = score.
-  let pairs=[];
-  for(const row of rows){
-    const name=String(row[0]??"").trim();
-    const value=row[1]??"";
-    if(name && value!=="" && !isNaN(Number(value))) pairs.push([name, Number(value)]);
-  }
-  if(pairs.length>=2) return pairs;
-
-  // Alternative: headers contain names and the first data row contains values.
-  if(rows.length>=1){
-    const row=rows[0];
-    const alt=[];
-    for(let i=0;i<cols.length;i++){
-      if(cols[i] && row[i]!=="" && !isNaN(Number(row[i]))) alt.push([cols[i],Number(row[i])]);
-    }
-    if(alt.length>=2) return alt;
-  }
-  throw new Error("Could not map ranking values");
-}
-
-async function loadSheet(){
-  try{
-    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&sheet=${encodeURIComponent(SHEET_NAME)}&headers=1`;
-    const res=await fetch(url,{cache:"no-store"});
-    if(!res.ok) throw new Error("HTTP "+res.status);
-    const text=await res.text();
-    const items=parseGviz(text);
-    // Preserve sheet order: the first row becomes 1st place, etc.
-    renderRanking(items,true);
-  }catch(e){
-    renderRanking(fallback,false);
-    console.warn("Google Sheets sync failed:",e);
-  }
-}
-loadSheet();
-setInterval(loadSheet,60000);
-
-const nav=document.getElementById("nav");
-document.querySelector(".menu").onclick=()=>nav.classList.toggle("open");
-
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
-},{threshold:.12});
-document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
-</script>
-</body>
-</html>
+const SHEET_ID='1HArOqLr2rFlgn8RDXPF9dRDbYKK2uLfNgzcAlZYZYBY';
+const CITY_GID='597886415';
+const CITY_SHEET='Итог';
+const GANG_SHEET='Итог фреш';
+const CHARACTERS=['Lusia Osmaeva','Elmir Duval','CJ Neretin','Ilya Belik','Igor Versetti','Katalina Isaeva','Clode Esman'];
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[m]))}
+function parseGviz(text){const a=text.indexOf('{'),b=text.lastIndexOf('}');if(a<0||b<0)throw Error('bad gviz');const o=JSON.parse(text.slice(a,b+1));const rows=(o.table.rows||[]).map(r=>(r.c||[]).map(c=>c?.v??''));const cols=(o.table.cols||[]).map(c=>c?.label||'');return {rows,cols}}
+function mapRows(data,limit){let out=[];for(const r of data.rows){const name=String(r[0]??'').trim();const val=r[1]??'';if(name&&val!==''&&!isNaN(Number(val)))out.push([name,Number(val)]);}if(out.length<2){for(let i=0;i<data.cols.length;i++){if(data.cols[i]&&data.rows[0]?.[i]!==''&&!isNaN(Number(data.rows[0][i])))out.push([data.cols[i],Number(data.rows[0][i])]);}}return out.slice(0,limit)}
+function render(elId,items,limit,gang){const el=document.getElementById(elId);el.innerHTML=items.map((x,i)=>`<div class="rank-row ${i===0?'first':''}"><div class="rank-place"><span class="rank-icon">${i===0?(gang?'🔫':'♛'):i+1}</span>${i+1}</div><div><div class="rank-name">${esc(x[0])}</div><div class="rank-sub">Place ${i+1} / Live ranking</div></div><div class="rank-value">${esc(x[1])}</div></div>`).join('')}
+async function load(sheet,gid,elId,syncId,limit,gang=false){try{const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${gid||''}&sheet=${encodeURIComponent(sheet)}&headers=1`;const r=await fetch(url,{cache:'no-store'});if(!r.ok)throw Error(r.status);const d=parseGviz(await r.text());const items=mapRows(d,limit);if(!items.length)throw Error('No ranking data');render(elId,items,limit,gang);document.getElementById(syncId).textContent=`● LIVE · SHEET «${sheet}» · AUTO-REFRESH 60 SEC`;}catch(e){document.getElementById(syncId).textContent=`● SHEET «${sheet}» UNAVAILABLE`;console.warn(e)}}
+async function refresh(){await load(CITY_SHEET,CITY_GID,'cityRanking','citySync',7,false);await load(GANG_SHEET,'','gangRanking','gangSync',4,true)}
+refresh();setInterval(refresh,60000);
+const io=new IntersectionObserver(es=>es.forEach(e=>e.isIntersecting&&e.target.classList.add('show')),{threshold:.12});document.querySelectorAll('.reveal').forEach(e=>io.observe(e));
+</script></body></html>
