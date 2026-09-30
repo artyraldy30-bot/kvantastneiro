@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#09060d">
+<meta name="description" content="GRAND THEFT NEIRO — a cinematic open-world crime universe.">
+<title>GRAND THEFT NEIRO</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800&display=swap');
+
+:root{
+  --bg:#08070b; --paper:#f6f2ea; --muted:#a8a3b2; --line:rgba(255,255,255,.13);
+  --pink:#ff3dbb; --purple:#7c4dff; --orange:#ff7a2f; --cyan:#38d8ff;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:#fff;font-family:Inter,system-ui,sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+.nav{position:fixed;z-index:50;top:0;left:0;right:0;padding:22px 4vw;display:flex;justify-content:space-between;align-items:center;background:linear-gradient(180deg,rgba(0,0,0,.72),transparent);backdrop-filter:blur(5px)}
+.brand{font:900 24px/1 'Barlow Condensed';letter-spacing:.02em}
+.brand span{color:var(--pink)}
+.navlinks{display:flex;gap:28px;font-size:12px;text-transform:uppercase;letter-spacing:.16em}
+.navlinks a{opacity:.78;transition:.25s}.navlinks a:hover{opacity:1;color:#fff;text-shadow:0 0 18px var(--pink)}
+.menu{display:none;background:none;border:0;color:#fff;font-size:24px}
+
+.hero{min-height:100svh;position:relative;display:grid;place-items:end;overflow:hidden}
+.hero-bg{position:absolute;inset:-4%;background:
+linear-gradient(180deg,rgba(7,4,13,.1) 10%,rgba(7,4,13,.45) 55%,#08070b 100%),
+radial-gradient(circle at 74% 20%,rgba(255,61,187,.65),transparent 25%),
+radial-gradient(circle at 28% 35%,rgba(56,216,255,.38),transparent 26%),
+linear-gradient(125deg,#160b2a,#25103e 40%,#0a1827);
+transform:scale(1.04);animation:drift 18s ease-in-out infinite alternate}
+.hero-bg:after{content:"";position:absolute;inset:0;background:
+linear-gradient(90deg,rgba(255,61,187,.14),transparent 35%,rgba(56,216,255,.1)),
+repeating-linear-gradient(100deg,transparent 0 70px,rgba(255,255,255,.035) 71px 72px)}
+.city{position:absolute;left:0;right:0;bottom:0;height:58%;opacity:.75;
+background:
+linear-gradient(180deg,transparent 0 20%,rgba(5,5,12,.3)),
+linear-gradient(90deg,transparent 0 5%,rgba(255,61,187,.25) 5.2% 5.7%,transparent 5.9% 16%,rgba(56,216,255,.2) 16.2% 17%,transparent 17.2% 29%,rgba(255,122,47,.2) 29.2% 30%,transparent 30.2% 43%,rgba(124,77,255,.28) 43.2% 44%,transparent 44.2% 57%,rgba(56,216,255,.2) 57.2% 58%,transparent 58.2% 72%,rgba(255,61,187,.25) 72.2% 73%,transparent 73.2%);
+filter:blur(1px)}
+.palms{position:absolute;inset:0;pointer-events:none;opacity:.4}
+.palms:before,.palms:after{content:"";position:absolute;bottom:18%;width:240px;height:420px;border-left:18px solid #08070b;border-radius:50%;transform:rotate(13deg)}
+.palms:before{left:4%}.palms:after{right:7%;transform:scaleX(-1) rotate(13deg)}
+.hero-content{position:relative;z-index:3;width:min(1240px,92vw);padding:0 0 9vh}
+.kicker{font-size:11px;letter-spacing:.28em;text-transform:uppercase;color:#d7d1dc;margin-bottom:14px}
+h1{font:900 clamp(76px,13vw,190px)/.78 'Barlow Condensed';text-transform:uppercase;margin:0;letter-spacing:-.035em;max-width:1050px;text-shadow:10px 10px 0 rgba(0,0,0,.55)}
+h1 .pink{color:var(--pink)} h1 .outline{color:transparent;-webkit-text-stroke:2px #fff}
+.hero-sub{margin:28px 0 30px;font:600 clamp(16px,2vw,24px)/1.1 'Barlow Condensed';letter-spacing:.25em;text-transform:uppercase}
+.actions{display:flex;gap:12px;flex-wrap:wrap}
+.btn{display:inline-flex;align-items:center;justify-content:center;min-width:180px;padding:15px 22px;border:1px solid rgba(255,255,255,.35);text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:800;transition:.25s;cursor:pointer}
+.btn.primary{background:var(--paper);color:#0a0810;border-color:var(--paper)}
+.btn:hover{transform:translateY(-3px);box-shadow:0 14px 40px rgba(0,0,0,.35)}
+.scroll{position:absolute;right:4vw;bottom:38px;writing-mode:vertical-rl;text-transform:uppercase;letter-spacing:.3em;font-size:9px;color:#bbb;z-index:4}
+
+.section{padding:120px 4vw;position:relative}
+.section-head{display:flex;justify-content:space-between;gap:30px;align-items:end;margin-bottom:45px}
+.eyebrow{font-size:10px;letter-spacing:.28em;text-transform:uppercase;color:var(--pink);margin-bottom:8px}
+h2{font:800 clamp(48px,8vw,100px)/.85 'Barlow Condensed';margin:0;text-transform:uppercase;letter-spacing:-.02em}
+.lead{max-width:500px;color:var(--muted);font-size:14px;line-height:1.7}
+
+.characters{background:
+radial-gradient(circle at 10% 0,rgba(255,61,187,.1),transparent 30%),
+linear-gradient(180deg,#08070b,#0d0b13)}
+.character-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.card{min-height:510px;position:relative;overflow:hidden;border:1px solid var(--line);background:#111;isolation:isolate}
+.card:nth-child(2){transform:translateY(42px)}.card:nth-child(5){transform:translateY(42px)}
+.card-img{position:absolute;inset:0;background-image:url("assets/characters-collage.png");background-size:220% auto;background-repeat:no-repeat;transition:transform .6s cubic-bezier(.2,.7,.2,1);filter:saturate(1.15) contrast(1.05)}
+.c1{background-position:0% 0%}.c2{background-position:50% 0%}.c3{background-position:100% 0%}
+.c4{background-position:0% 52%}.c5{background-position:55% 52%}.c6{background-position:100% 52%}
+.card:after{content:"";position:absolute;inset:0;background:linear-gradient(180deg,transparent 30%,rgba(0,0,0,.15) 50%,rgba(0,0,0,.9) 100%);z-index:1}
+.card:hover .card-img{transform:scale(1.07)}
+.card-body{position:absolute;z-index:2;left:22px;right:22px;bottom:22px}
+.role{font-size:9px;letter-spacing:.25em;text-transform:uppercase;color:#ddd;margin-bottom:8px}
+.card h3{font:800 48px/.9 'Barlow Condensed';text-transform:uppercase;margin:0 0 10px}
+.card p{font-size:12px;color:#d0ccd3;line-height:1.5;margin:0 0 18px;max-width:330px}
+.mini{font-size:9px;padding:10px 13px;min-width:auto}
+
+.city-section{overflow:hidden;background:#05060a}
+.city-bg{position:absolute;inset:0;background:
+radial-gradient(circle at 75% 40%,rgba(56,216,255,.22),transparent 30%),
+linear-gradient(180deg,rgba(5,6,10,.1),rgba(5,6,10,.95)),
+linear-gradient(110deg,#111527,#0c101b 45%,#190b20);opacity:.8}
+.city-grid{position:relative;display:grid;grid-template-columns:1.2fr .8fr;gap:18px}
+.city-main{min-height:610px;border:1px solid var(--line);position:relative;overflow:hidden;padding:32px;display:flex;align-items:end;background:
+linear-gradient(180deg,transparent 40%,rgba(0,0,0,.8)),
+radial-gradient(circle at 50% 10%,rgba(255,61,187,.38),transparent 35%),
+linear-gradient(135deg,#15152a,#07101c)}
+.city-main:before{content:"";position:absolute;inset:0;background:repeating-linear-gradient(88deg,transparent 0 58px,rgba(255,255,255,.025) 59px 60px)}
+.city-title{position:relative}.city-title h3{font:800 clamp(52px,7vw,100px)/.8 'Barlow Condensed';margin:0;text-transform:uppercase}
+.city-title p{color:#aaa;max-width:420px;line-height:1.6;font-size:13px}
+.stats{display:grid;grid-template-columns:1fr 1fr;gap:18px}
+.stat{min-height:190px;padding:24px;border:1px solid var(--line);background:rgba(255,255,255,.035);backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.stat:before{content:"";position:absolute;left:0;bottom:0;width:100%;height:3px;background:linear-gradient(90deg,var(--pink),var(--orange),var(--cyan));transform:scaleX(var(--pct,0));transform-origin:left;transition:1s}
+.stat-name{font:700 17px 'Barlow Condensed';text-transform:uppercase;letter-spacing:.08em;color:#ddd}
+.stat-value{font:900 64px/.9 'Barlow Condensed';margin-top:20px}
+.stat-meta{font-size:9px;text-transform:uppercase;letter-spacing:.18em;color:#777;margin-top:8px}
+.sync{margin-top:18px;font-size:9px;letter-spacing:.15em;text-transform:uppercase;color:#7fdfff}
+.sync.error{color:#ff9c9c}
+
+.gallery{background:#0b0910}
+.masonry{columns:3 280px;column-gap:14px}
+.g-item{break-inside:avoid;margin:0 0 14px;position:relative;overflow:hidden;border:1px solid var(--line);cursor:zoom-in;background:#14111a}
+.g-item img{width:100%;display:block;transition:.5s;filter:saturate(1.15)}
+.g-item:hover img{transform:scale(1.05)}
+.g-label{position:absolute;left:14px;bottom:14px;font:700 20px 'Barlow Condensed';text-transform:uppercase;text-shadow:2px 2px 0 #000}
+
+.story{min-height:80vh;display:grid;place-items:center;overflow:hidden;background:
+linear-gradient(90deg,rgba(5,4,9,.96),rgba(5,4,9,.48),rgba(5,4,9,.96)),
+radial-gradient(circle at 50% 45%,rgba(255,61,187,.32),transparent 32%),
+linear-gradient(120deg,#160c22,#061321)}
+.story-inner{text-align:center;max-width:1000px}
+.story-quote{font:800 clamp(58px,10vw,150px)/.82 'Barlow Condensed';text-transform:uppercase;letter-spacing:-.025em}
+.story-quote span{color:var(--pink)}
+.story-small{margin-top:25px;color:#aaa;font-size:12px;letter-spacing:.25em;text-transform:uppercase}
+
+.media-grid{display:grid;grid-template-columns:1.4fr .6fr;gap:16px}
+.media-main,.media-side{min-height:460px;border:1px solid var(--line);position:relative;overflow:hidden}
+.media-main{background:
+linear-gradient(180deg,transparent 35%,rgba(0,0,0,.9)),
+radial-gradient(circle at 50% 30%,rgba(56,216,255,.35),transparent 25%),
+linear-gradient(135deg,#27103a,#08111c)}
+.media-main .play{position:absolute;left:50%;top:45%;transform:translate(-50%,-50%);width:92px;height:92px;border-radius:50%;border:1px solid #fff;display:grid;place-items:center;font-size:28px;background:rgba(0,0,0,.25);backdrop-filter:blur(8px)}
+.media-caption{position:absolute;left:28px;bottom:28px}.media-caption h3{font:800 54px/.85 'Barlow Condensed';margin:0;text-transform:uppercase}.media-caption p{color:#aaa;font-size:12px}
+.media-side{padding:24px;background:linear-gradient(135deg,rgba(255,61,187,.12),rgba(56,216,255,.05))}
+.media-side h3{font:800 42px/.9 'Barlow Condensed';text-transform:uppercase;margin:0 0 22px}
+.feed{display:grid;gap:10px}.feed div{padding:14px;border:1px solid var(--line);font-size:11px;color:#c5c0c9}
+
+.cta{padding:140px 4vw;text-align:center;position:relative;overflow:hidden;background:
+radial-gradient(circle at 50% 50%,rgba(255,61,187,.35),transparent 25%),
+linear-gradient(135deg,#0d0714,#07131c)}
+.cta h2{font-size:clamp(80px,15vw,210px)}
+footer{padding:28px 4vw;border-top:1px solid var(--line);display:flex;justify-content:space-between;color:#777;font-size:9px;letter-spacing:.18em;text-transform:uppercase}
+
+.lightbox{position:fixed;z-index:100;inset:0;background:rgba(0,0,0,.9);display:none;place-items:center;padding:4vw;backdrop-filter:blur(12px)}
+.lightbox.open{display:grid}.lightbox img{max-width:94vw;max-height:90vh;object-fit:contain;box-shadow:0 30px 100px #000}
+.close{position:absolute;right:28px;top:22px;background:none;border:0;color:#fff;font-size:32px;cursor:pointer}
+
+.reveal{opacity:0;transform:translateY(30px);transition:opacity .8s,transform .8s}.reveal.show{opacity:1;transform:none}
+@keyframes drift{to{transform:scale(1.08) translate3d(-1%,1%,0)}}
+
+@media(max-width:800px){
+ .navlinks{display:none}.menu{display:block}
+ .nav.open .navlinks{display:flex;position:absolute;top:70px;right:4vw;flex-direction:column;background:rgba(10,8,14,.94);padding:20px;border:1px solid var(--line)}
+ .section{padding:90px 5vw}.section-head{display:block}.lead{margin-top:18px}
+ .character-grid{grid-template-columns:1fr}.card,.card:nth-child(2),.card:nth-child(5){min-height:500px;transform:none}
+ .city-grid,.media-grid{grid-template-columns:1fr}.city-main{min-height:430px}.stats{grid-template-columns:1fr 1fr}
+ .masonry{columns:2 150px}.hero-content{padding-bottom:12vh}.scroll{display:none}
+}
+@media(max-width:480px){
+ h1{font-size:78px}.stats{grid-template-columns:1fr}.masonry{columns:1}.btn{width:100%}
+ footer{display:block;line-height:2}
+}
+</style>
+</head>
+<body>
+<header class="nav" id="nav">
+  <a class="brand" href="#top">GRAND <span>THEFT</span> NEIRO</a>
+  <nav class="navlinks">
+    <a href="#characters">Characters</a><a href="#city">The City</a><a href="#gallery">Gallery</a><a href="#story">Story</a><a href="#media">Media</a>
+  </nav>
+  <button class="menu" aria-label="Menu">☰</button>
+</header>
+
+<main id="top">
+<section class="hero">
+  <div class="hero-bg"></div><div class="city"></div><div class="palms"></div>
+  <div class="hero-content reveal">
+    <div class="kicker">A NEW CRIME UNIVERSE · 2026</div>
+    <h1>GRAND <span class="pink">THEFT</span><br><span class="outline">NEIRO</span></h1>
+    <div class="hero-sub">THE CITY IS YOURS</div>
+    <div class="actions">
+      <a class="btn primary" href="#city">Explore</a>
+      <a class="btn" href="#characters">Meet the characters</a>
+    </div>
+  </div>
+  <div class="scroll">Scroll to enter the city ↓</div>
+</section>
+
+<section class="section characters" id="characters">
+  <div class="section-head reveal"><div><div class="eyebrow">01 / The crew</div><h2>Characters</h2></div><p class="lead">Six faces. Six motives. One city where every decision leaves a mark. Explore the cast behind the chaos.</p></div>
+  <div class="character-grid">
+    <article class="card reveal"><div class="card-img c1"></div><div class="card-body"><div class="role">The Fixer</div><h3>Lucia</h3><p>Sharp instincts, colder decisions. She knows every shortcut through the city.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+    <article class="card reveal"><div class="card-img c2"></div><div class="card-body"><div class="role">The Driver</div><h3>Jason</h3><p>Fast hands, faster exits. When the sirens start, he is already gone.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+    <article class="card reveal"><div class="card-img c3"></div><div class="card-body"><div class="role">The Wild Card</div><h3>Vincent</h3><p>A polished smile hiding an appetite for risk.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+    <article class="card reveal"><div class="card-img c4"></div><div class="card-body"><div class="role">The Ghost</div><h3>Claude</h3><p>Quiet. Precise. Impossible to read.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+    <article class="card reveal"><div class="card-img c5"></div><div class="card-body"><div class="role">The Enforcer</div><h3>Catalina</h3><p>Power, style and a very short fuse.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+    <article class="card reveal"><div class="card-img c6"></div><div class="card-body"><div class="role">The Survivor</div><h3>Niko</h3><p>A hard past and a new city. Nothing is ever really left behind.</p><a class="btn mini" href="#gallery">View character</a></div></article>
+  </div>
+</section>
+
+<section class="section city-section" id="city">
+  <div class="city-bg"></div>
+  <div class="section-head reveal" style="position:relative"><div><div class="eyebrow">02 / Live city data</div><h2>The City</h2></div><p class="lead">Live figures are read from the connected Google Sheet. The page refreshes automatically so the city can evolve with the file.</p></div>
+  <div class="city-grid">
+    <div class="city-main reveal"><div class="city-title"><div class="eyebrow">NEON METROPOLIS</div><h3>Every block<br>has a story.</h3><p>Downtown lights. Harbor deals. Midnight runs. Suburban secrets. Industrial pressure. Watch the numbers move as the city changes.</p></div></div>
+    <div>
+      <div class="stats" id="stats"></div>
+      <div class="sync" id="sync">SYNCING CITY DATA…</div>
+    </div>
+  </div>
+</section>
+
+<section class="section gallery" id="gallery">
+  <div class="section-head reveal"><div><div class="eyebrow">03 / Visual archive</div><h2>Gallery</h2></div><p class="lead">Posters, portraits and moments from the city. Click any frame for a fullscreen view.</p></div>
+  <div class="masonry">
+    <div class="g-item reveal"><img src="assets/characters-collage.png" alt="Grand Theft Neiro character collage"><div class="g-label">The Crew</div></div>
+    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:70% 0" alt="Neon city characters"><div class="g-label">Vice Nights</div></div>
+    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:20% 65%" alt="City poster"><div class="g-label">Liberty Heat</div></div>
+    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:85% 55%" alt="Character poster"><div class="g-label">No Rules</div></div>
+    <div class="g-item reveal"><img src="assets/characters-collage.png" style="object-position:50% 100%" alt="Waterfront skyline"><div class="g-label">After Dark</div></div>
+  </div>
+</section>
+
+<section class="section story" id="story">
+  <div class="story-inner reveal">
+    <div class="eyebrow">04 / The story</div>
+    <div class="story-quote">One city.<br><span>Six stories.</span><br>No rules.</div>
+    <div class="story-small">Trust is expensive. Loyalty costs more.</div>
+  </div>
+</section>
+
+<section class="section" id="media">
+  <div class="section-head reveal"><div><div class="eyebrow">05 / Media</div><h2>Media</h2></div><p class="lead">A cinematic launch area ready for your trailer, gameplay clips and screenshots.</p></div>
+  <div class="media-grid">
+    <div class="media-main reveal"><div class="play">▶</div><div class="media-caption"><h3>Official Trailer</h3><p>DROP THE LINK TO YOUR VIDEO IN THE HTML CONFIG.</p></div></div>
+    <div class="media-side reveal"><h3>Latest<br>from the city</h3><div class="feed"><div>01 — NIGHT SHIFT / DOWNTOWN</div><div>02 — HARBOR RUN / 02:17 AM</div><div>03 — SUBURBAN HEAT / 04:46 AM</div><div>04 — INDUSTRIAL DISTRICT / LIVE</div></div></div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="reveal"><div class="eyebrow">06 / Your move</div><h2>Enter the city</h2><a class="btn primary" href="#top">Play now</a></div>
+</section>
+</main>
+
+<footer><span>GRAND THEFT NEIRO</span><span>© 2026 · THE CITY IS YOURS</span></footer>
+
+<div class="lightbox" id="lightbox"><button class="close" aria-label="Close">×</button><img id="lightboxImg" alt=""></div>
+
+<script>
+const SHEET_ID = "1HArOqLr2rFlgn8RDXPF9dRDbYKK2uLfNgzcAlZYZYBY";
+const SHEET_GID = "1974178009";
+const fallback = [
+  ["Downtown", 82],["Nightlife", 67],["Harbor", 54],["Suburbs", 41],["Industrial District", 73]
+];
+
+const statsEl = document.getElementById("stats");
+const syncEl = document.getElementById("sync");
+
+function esc(s){return String(s).replace(/[&<>"']/g,m=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;","'":"&#39;"}[m]))}
+
+function renderStats(items, live=true){
+  statsEl.innerHTML = items.slice(0,6).map(([name,value])=>{
+    const n = Number(value) || 0;
+    const pct = Math.max(0,Math.min(100,n));
+    return `<div class="stat" style="--pct:${pct/100}">
+      <div class="stat-name">${esc(name)}</div>
+      <div class="stat-value">${esc(value)}</div>
+      <div class="stat-meta">${live ? "Live from Google Sheets" : "Demo value — connect a public sheet"}</div>
+    </div>`;
+  }).join("");
+  syncEl.textContent = live ? "● LIVE DATA · AUTO-REFRESH EVERY 60 SEC" : "● DEMO DATA · MAKE THE GOOGLE SHEET PUBLIC TO SYNC";
+  syncEl.classList.toggle("error",!live);
+}
+
+function parseGviz(text){
+  const start=text.indexOf("{"), end=text.lastIndexOf("}");
+  if(start<0||end<0) throw new Error("Invalid response");
+  const obj=JSON.parse(text.slice(start,end+1));
+  const cols=obj.table.cols.map(c=>c.label||"");
+  const rows=obj.table.rows.map(r=>r.c.map(c=>c?.v ?? ""));
+  if(!rows.length) throw new Error("No rows");
+  const header=rows[0].map(String);
+  const districtWords=["downtown","nightlife","harbor","suburbs","industrial","district"];
+  const out=[];
+  // Case 1: rows are [district, value]
+  for(const row of rows){
+    if(row.length>=2 && typeof row[0]==="string" && row[0].trim() && !isNaN(Number(row[1]))){
+      out.push([row[0],row[1]]);
+    }
+  }
+  if(out.length>=2) return out;
+  // Case 2: columns are district names and first data row contains values
+  const first=rows[0];
+  const fromCols=[];
+  for(let i=0;i<cols.length;i++){
+    if(cols[i] && !isNaN(Number(first[i]))) fromCols.push([cols[i],first[i]]);
+  }
+  if(fromCols.length>=2) return fromCols;
+  // Case 3: first row is headers, second row is values
+  if(rows.length>=2){
+    const row=rows[1];
+    const byHeaders=[];
+    for(let i=0;i<header.length;i++) if(header[i] && !isNaN(Number(row[i]))) byHeaders.push([header[i],row[i]]);
+    if(byHeaders.length>=2) return byHeaders;
+  }
+  return [];
+}
+
+async function loadSheet(){
+  try{
+    const url=`https://docs.google.com/spreadsheets/d/${SHEET_ID}/gviz/tq?tqx=out:json&gid=${SHEET_GID}&headers=1`;
+    const res=await fetch(url,{cache:"no-store"});
+    if(!res.ok) throw new Error("HTTP "+res.status);
+    const text=await res.text();
+    const items=parseGviz(text);
+    if(!items.length) throw new Error("Could not map numeric stats");
+    renderStats(items,true);
+  }catch(e){
+    renderStats(fallback,false);
+    console.warn("Google Sheets sync failed:",e);
+  }
+}
+loadSheet();
+setInterval(loadSheet,60000);
+
+const nav=document.getElementById("nav");
+document.querySelector(".menu").onclick=()=>nav.classList.toggle("open");
+
+const io=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add("show")});
+},{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>io.observe(el));
+
+const lb=document.getElementById("lightbox"), lbImg=document.getElementById("lightboxImg");
+document.querySelectorAll(".g-item").forEach(item=>{
+  item.addEventListener("click",()=>{
+    const img=item.querySelector("img"); lbImg.src=img.src; lbImg.alt=img.alt; lb.classList.add("open");
+  });
+});
+document.querySelector(".close").onclick=()=>lb.classList.remove("open");
+lb.addEventListener("click",e=>{if(e.target===lb)lb.classList.remove("open")});
+document.addEventListener("keydown",e=>{if(e.key==="Escape")lb.classList.remove("open")});
+</script>
+</body>
+</html>
